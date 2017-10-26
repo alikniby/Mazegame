@@ -1,0 +1,73 @@
+After you made your frame and labels that will play as walls in your game is time to code!
+
+Sorce code:
+1. Messege box
+private void Finish_MouseEnter(object sender, EventArgs e)
+  {
+      MessageBox.Show("You Won");
+      Close();
+  }
+  
+  2.Move start
+  private void movetostart()
+{
+    Point startingpoint = panel1.Location;
+    startingpoint.Offset(10, 10);
+    Cursor.Position = PointToScreen(startingpoint);
+}
+
+3.Page load
+public Form1()
+{
+    InitializeComponent();
+    movetostart();
+}
+
+After doing that, double-click on it and it will take you to the coding part. Add the movetostart method to this Event.
+
+private void wall_MouseEnter(object sender, EventArgs e)
+{
+    movetostart();
+}
+
+4.public partial class Form1 : Form
+{
+System.Media.SoundPlayer startSound = new System.Media.SoundPlayer(@"C:\Windows\Media\chord.wav");
+public Form1()
+{
+    InitializeComponent();
+    movetostart();
+}
+
+Add this code to change the sound on game completion:
+
+public partial class Form1 : Form
+{
+System.Media.SoundPlayer startSound = new System.Media.SoundPlayer(@"C:\Windows\Media\chord.wav");
+System.Media.SoundPlayer endSound = new System.Media.SoundPlayer(@"C:\Windows\Media\tada.wav");
+public Form1()
+{
+    InitializeComponent();
+    movetostart();
+}Step 11
+
+Add a Play() method to call the Sound Player at the appropriate time. For the first sound add this code to the movetostart() method:
+
+private void movetostart()
+{
+    startSound.Play();
+    Point startingpoint = panel1.Location;
+    startingpoint.Offset(10, 10);
+    Cursor.Position = PointToScreen(startingpoint);
+}
+
+For the second sound add this code to the "Finish_MouseEnter()":
+
+private void Finish_MouseEnter(object sender, EventArgs e)
+{
+    endSound.Play();
+    MessageBox.Show("You Won");
+    Close();
+}
+
+Now simply run your program and your game will be started.
